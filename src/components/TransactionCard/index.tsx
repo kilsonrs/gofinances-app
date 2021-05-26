@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { 
+import {
   Container,
   Title,
   Amount,
@@ -17,7 +17,7 @@ interface Category {
 }
 
 export interface TransactionCardProps {
-  type: 'positive'|'negative';
+  type: 'positive' | 'negative';
   title: string;
   amount: string;
   category: Category;
@@ -29,13 +29,7 @@ interface Props {
 }
 
 const TransactionCard: React.FC<Props> = ({ data }) => {
-  const {
-    type,
-    title,
-    amount,
-    category,
-    date,
-  } = data;
+  const { type, title, amount, category, date } = data;
   return (
     <Container>
       <Title>{title}</Title>
@@ -52,6 +46,6 @@ const TransactionCard: React.FC<Props> = ({ data }) => {
       </Footer>
     </Container>
   );
-}
+};
 
 export { TransactionCard };
