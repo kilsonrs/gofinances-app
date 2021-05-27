@@ -72,7 +72,7 @@ const Register: React.FC = () => {
       };
       console.log(data, errors);
     },
-    [transactionType, category.key],
+    [transactionType, category.key, errors],
   );
 
   return (
