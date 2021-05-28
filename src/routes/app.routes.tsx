@@ -20,6 +20,7 @@ function AppRoutes(): JSX.Element {
           paddingVertical: Platform.OS === 'ios' ? 20 : 0,
           height: 58,
         },
+        keyboardHidesTabBar: true,
       }}
     >
       <Screen

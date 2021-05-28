@@ -105,3 +105,12 @@ export const TransactionList = styled(
     paddingBottom: getBottomSpace(),
   },
 })``;
+
+export const Loading = styled.ActivityIndicator.attrs({
+  size: 'large',
+})`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.primary};
+`;
