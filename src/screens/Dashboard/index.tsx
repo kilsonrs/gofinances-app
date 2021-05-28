@@ -14,6 +14,7 @@ import {
   Transactions,
   Title,
   TransactionList,
+  LogoutButton,
 } from './styles';
 
 import { HighlightCard } from '../../components/HighlightCard';
@@ -68,7 +69,9 @@ const Dashboard: React.FC = () => {
               <UserName>Kilson</UserName>
             </User>
           </UserInfo>
-          <Icon name="power" />
+          <LogoutButton>
+            <Icon name="power" />
+          </LogoutButton>
         </UserWrapper>
       </Header>
 
