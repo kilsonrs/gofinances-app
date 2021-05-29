@@ -14,6 +14,7 @@ import {
   Poppins_700Bold,
 } from '@expo-google-fonts/poppins';
 
+import { StatusBar } from 'react-native';
 import theme from './src/global/styles/theme';
 
 import { AppRoutes } from './src/routes/app.routes';
@@ -31,6 +32,11 @@ export default function App(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
+        <StatusBar
+          translucent
+          barStyle="light-content"
+          backgroundColor={theme.colors.primary}
+        />
         <AppRoutes />
       </NavigationContainer>
     </ThemeProvider>
