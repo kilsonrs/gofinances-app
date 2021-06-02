@@ -29,6 +29,7 @@ import {
   TransactionCardProps,
 } from '../../components/TransactionCard';
 import { formatCurrency } from '../../utils/formatCurrency';
+import { useAuth } from '../../hooks/auth';
 
 export interface DataListProps extends TransactionCardProps {
   id: string;
@@ -36,7 +37,10 @@ export interface DataListProps extends TransactionCardProps {
 
 const Dashboard: React.FC = () => {
   const [transactions, setTransactions] = useState<DataListProps[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  const theme = useTheme();
+  const { user, signOut } = useAuth();
 
   const getLastTransactionDate = useCallback(
     (collection: DataListProps[], type: 'positive' | 'negative') => {
@@ -130,7 +134,6 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     loadTransactions();
-    // AsyncStorage.clear();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -140,7 +143,6 @@ const Dashboard: React.FC = () => {
     }, [loadTransactions]),
   );
 
-  const theme = useTheme();
   return (
     <>
       {loading ? (
@@ -152,15 +154,15 @@ const Dashboard: React.FC = () => {
               <UserInfo>
                 <Photo
                   source={{
-                    uri: 'https://avatars.githubusercontent.com/u/26013332?v=4',
+                    uri: user.photo,
                   }}
                 />
                 <User>
                   <UserGreeting>Olá,</UserGreeting>
-                  <UserName>Kilson</UserName>
+                  <UserName>{user.name}</UserName>
                 </User>
               </UserInfo>
-              <LogoutButton>
+              <LogoutButton onPress={signOut}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>
