@@ -4,10 +4,12 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import uuid from 'react-native-uuid';
 
-import { useForm } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../../hooks/auth';
+
 import Button from '../../components/Form/Button';
 
 import {
@@ -42,6 +44,7 @@ const Register: React.FC = () => {
     name: 'Categoria',
   });
   const navigation = useNavigation();
+  const { user } = useAuth();
 
   const [transactionType, setTransactionType] = useState('');
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
@@ -76,7 +79,7 @@ const Register: React.FC = () => {
       if (category.key === 'category')
         return Alert.alert('Selecione categoria');
 
-      const dataKey = '@gofinances:transactions';
+      const dataKey = `@gofinances:transactions_user:${user.id}`;
       const storageData = await AsyncStorage.getItem(dataKey);
       const currentData = storageData ? JSON.parse(storageData) : [];
       const newTransaction = {

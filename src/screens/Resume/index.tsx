@@ -8,8 +8,9 @@ import { ptBR } from 'date-fns/locale';
 
 import { useTheme } from 'styled-components';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-
 import { useFocusEffect } from '@react-navigation/core';
+import { useAuth } from '../../hooks/auth';
+
 import { categories } from '../../utils/categories';
 import { formatCurrency } from '../../utils/formatCurrency';
 
@@ -56,6 +57,7 @@ const Resume: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const theme = useTheme();
+  const { user } = useAuth();
 
   const handleDateChange = useCallback(
     (action: 'previous' | 'next') => {
@@ -70,7 +72,7 @@ const Resume: React.FC = () => {
 
   const loadData = useCallback(async () => {
     setLoading(true);
-    const dataKey = '@gofinances:transactions';
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const storageData = await AsyncStorage.getItem(dataKey);
     const currentData = storageData ? JSON.parse(storageData) : [];
 

@@ -62,10 +62,10 @@ const Dashboard: React.FC = () => {
   );
 
   const loadStorageTransactions = useCallback(async () => {
-    const dataKey = '@gofinances:transactions';
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     return response ? JSON.parse(response) : [];
-  }, []);
+  }, [user.id]);
 
   const formatTransactions = useCallback(
     (storageTransactions): DataListProps[] => {
