@@ -9,6 +9,7 @@
       "**/*"
     ],
     "description": "",
-    "githubUrl": "https://github.com/kilsonrs/gofinances-app"
+    "githubUrl": "https://github.com/kilsonrs/gofinances-app",
+    "primaryColor": "#5636D3"
   }
 }
