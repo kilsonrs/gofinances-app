@@ -44,12 +44,16 @@ const Dashboard: React.FC = () => {
 
   const getLastTransactionDate = useCallback(
     (collection: DataListProps[], type: 'positive' | 'negative') => {
+      const collectionFiltered = collection.filter(
+        transaction => transaction.type === type,
+      );
+      if (collectionFiltered.length === 0) return 0;
       const lastTransaction = new Date(
         Math.max.apply(
           Math,
-          collection
-            .filter(transaction => transaction.type === type)
-            .map(transaction => new Date(transaction.date).getTime()),
+          collectionFiltered.map(transaction =>
+            new Date(transaction.date).getTime(),
+          ),
         ),
       );
       const lastTransactionFormatted = `${lastTransaction.getDate()} de ${lastTransaction.toLocaleString(
@@ -117,10 +121,19 @@ const Dashboard: React.FC = () => {
   const lastTransactionsSummary = useMemo(() => {
     const lastEntries = getLastTransactionDate(transactions, 'positive');
     const lastExpensives = getLastTransactionDate(transactions, 'negative');
-    const interval = `01 a ${lastExpensives}`;
+    const entries =
+      lastEntries === 0
+        ? 'Não há transações'
+        : `Última entrada dia ${lastEntries}`;
+    const expensives =
+      lastExpensives === 0
+        ? 'Não há transações'
+        : `Última saída dia ${lastExpensives}`;
+    const interval =
+      lastExpensives === 0 ? 'Não há transações' : `01 a ${lastExpensives}`;
     return {
-      entries: `Última entrada dia ${lastEntries}`,
-      expensives: `Última saída dia ${lastExpensives}`,
+      entries,
+      expensives,
       interval,
     };
   }, [transactions, getLastTransactionDate]);
