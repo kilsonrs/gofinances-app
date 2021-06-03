@@ -5,6 +5,7 @@
     "name": "gofinances-app",
     "slug": "gofinances-app",
     "version": "1.0.0",
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "assetBundlePatterns": [
       "**/*"
