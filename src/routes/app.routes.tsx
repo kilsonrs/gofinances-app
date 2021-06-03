@@ -18,8 +18,7 @@ function AppRoutes(): JSX.Element {
         inactiveTintColor: theme.colors.text,
         labelPosition: 'beside-icon',
         style: {
-          paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-          height: 58,
+          height: Platform.OS === 'ios' ? 78 : 58,
         },
         keyboardHidesTabBar: true,
       }}
