@@ -118,7 +118,7 @@ const Resume: React.FC = () => {
     });
     setTotalByCategories(totalByCategory);
     setLoading(false);
-  }, [selectedDate]);
+  }, [selectedDate, user.id]);
 
   useFocusEffect(
     useCallback(() => {
@@ -158,6 +158,9 @@ const Resume: React.FC = () => {
             <VictoryPie
               data={totalByCategories}
               colorScale={totalByCategories?.map(category => category.color)}
+              width={300}
+              height={300}
+              padding={0}
               style={{
                 labels: {
                   fontSize: RFValue(18),
